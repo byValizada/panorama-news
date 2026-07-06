@@ -39,7 +39,11 @@ export const Header: React.FC = () => {
         <nav style={{ display: 'flex', alignItems: 'center' }}>
           <ul className={`nav-menu ${mobileMenuOpen ? 'open' : ''}`}>
             <li>
-              <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+              <NavLink 
+                to="/" 
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 {t('nav_home')}
               </NavLink>
             </li>
@@ -48,13 +52,18 @@ export const Header: React.FC = () => {
                 <NavLink
                   to={`/category/${cat.slug}`}
                   className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {cat.name}
                 </NavLink>
               </li>
             ))}
             <li>
-              <NavLink to="/about" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+              <NavLink 
+                to="/about" 
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 {t('nav_about')}
               </NavLink>
             </li>

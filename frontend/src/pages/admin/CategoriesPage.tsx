@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Plus, Trash, Edit, Save, X } from 'lucide-react';
 import { categoryApi } from '../../api/categoryApi';
 import { Category } from '../../types';
+import { slugify } from '../../utils/slugify';
 
 export const CategoriesPage: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -36,6 +37,12 @@ export const CategoriesPage: React.FC = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  useEffect(() => {
+    if (!isEditing && nameAz) {
+      setSlug(slugify(nameAz));
+    }
+  }, [nameAz, isEditing]);
 
   const resetForm = () => {
     setSlug('');

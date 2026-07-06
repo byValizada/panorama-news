@@ -7,6 +7,7 @@ import { articleApi } from '../../api/articleApi';
 import { categoryApi } from '../../api/categoryApi';
 import { mediaApi } from '../../api/mediaApi';
 import { Article, ArticleListDto, Category, MediaFile } from '../../types';
+import { slugify } from '../../utils/slugify';
 
 export const ArticlesPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -92,6 +93,12 @@ export const ArticlesPage: React.FC = () => {
       setEditingId(null);
     }
   }, [editIdParam, actionParam]);
+
+  useEffect(() => {
+    if (!editingId && titleAz) {
+      setSlug(slugify(titleAz));
+    }
+  }, [titleAz, editingId]);
 
   const handleEdit = async (id: number) => {
     try {
