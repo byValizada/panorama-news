@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15-alpine
+    container_name: panorama_postgres
+    environment:
+      POSTGRES_USER: panorama_user
+      POSTGRES_PASSWORD: PanoramaSecurePassword2026!
+      POSTGRES_DB: panorama_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U panorama_user -d panorama_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: panorama_backend
+    ports:
+      - "5277:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=database;Port=5432;Database=panorama_db;Username=panorama_user;Password=PanoramaSecurePassword2026!
+      - Jwt__Key=PanoramaNewsPortalSuperSecretKey2026!@#$%^&*()_+VeryLongKeyForSecurity
+      - Jwt__Issuer=Panorama
+      - Jwt__Audience=PanoramaApp
+      - DefaultAdmin__Username=admin
+      - DefaultAdmin__Password=Admin123!
+      - DefaultAdmin__Email=admin@panorama.az
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - uploads-data:/app/uploads
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: panorama_frontend
+    ports:
+      - "5173:80"
+    environment:
+      - VITE_API_URL=http://localhost:5277/api
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  uploads-data:

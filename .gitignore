@@ -1,0 +1,36 @@
+# Dotnet / C# build outputs
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# SQLite Databases
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Frontend Node outputs
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# IDEs
+.vs/
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# OS Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# App Uploads
+backend/Panorama.Api/uploads/

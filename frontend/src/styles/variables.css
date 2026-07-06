@@ -1,0 +1,69 @@
+:root {
+  /* Colors - Light Mode */
+  --bg-color: #fafafa;
+  --surface-color: #ffffff;
+  --surface-hover: #f5f5f7;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a68;
+  --text-muted: #8e8eab;
+  --accent-primary: #e63946;
+  --accent-secondary: #457b9d;
+  --accent-hover: #c92a3a;
+  --border-color: #e8e8ed;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  /* Fonts */
+  --font-logo: "Playfair Display", Georgia, serif;
+  --font-title: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: SFMono-Regular, Consolas, monospace;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2.5rem;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Header Height */
+  --header-height: 70px;
+  --ticker-height: 40px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Category colors default fallback */
+  --cat-politics: #e63946;
+  --cat-economy: #2a9d8f;
+  --cat-world: #1d3557;
+  --cat-sports: #e76f51;
+  --cat-tech: #457b9d;
+  --cat-culture: #9b59b6;
+}
+
+[data-theme="dark"] {
+  /* Colors - Dark Mode */
+  --bg-color: #0f0f1a;
+  --surface-color: #1a1a2e;
+  --surface-hover: #22223b;
+  --text-primary: #e8e8ed;
+  --text-secondary: #9898b0;
+  --text-muted: #6e6e8a;
+  --accent-primary: #ff6b6b;
+  --accent-secondary: #64b5f6;
+  --accent-hover: #ff8787;
+  --border-color: #2a2a3e;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
