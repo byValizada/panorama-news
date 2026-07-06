@@ -1,84 +1,105 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { categoryApi } from '../../api/categoryApi';
-import { Category } from '../../types';
-import { useLanguage } from '../../hooks/useLanguage';
-import { SearchBar } from '../common/SearchBar';
-import { ThemeToggle } from '../common/ThemeToggle';
-import { LanguageSwitcher } from '../common/LanguageSwitcher';
-import { BreakingTicker } from './BreakingTicker';
+import { Logo } from './Header/Logo';
+import { Navigation } from './Header/Navigation';
+import { SearchBar } from './Header/SearchBar';
+import { SearchDialog } from './Header/SearchDialog';
+import { ThemeSwitcher } from './Header/ThemeSwitcher';
+import { LanguageSelector } from './Header/LanguageSelector';
+import { WeatherWidget } from './Header/WeatherWidget';
+import { NotificationMenu } from './Header/NotificationMenu';
+import { ProfileMenu } from './Header/ProfileMenu';
+import { MobileNavigation } from './Header/MobileNavigation';
+import { BreakingTicker } from './Header/BreakingTicker';
+import '../../styles/header.css';
 
 export const Header: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { t } = useTranslation();
-  const { language } = useLanguage();
 
+  // Scroll handler for sticky header shrink effect
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const data = await categoryApi.getAll(language);
-        setCategories(data);
-      } catch (error) {
-        console.error('Failed to fetch categories:', error);
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
       }
     };
-    fetchCategories();
-  }, [language]);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="header-wrapper">
+    <>
+      {/* 1. Accessible Skip Link */}
+      <a href="#main-content" className="skip-to-content">
+        {t('skip_to_content', 'Məzmuna keçid et')}
+      </a>
+
+      {/* 2. Breaking News Ticker (sessionStorage controls visibility) */}
       <BreakingTicker />
-      <header className="container nav-container">
-        <Link to="/" className="logo">
-          PANORAMA<span>.</span>
-        </Link>
 
-        <nav style={{ display: 'flex', alignItems: 'center' }}>
-          <ul className={`nav-menu ${mobileMenuOpen ? 'open' : ''}`}>
-            <li>
-              <NavLink 
-                to="/" 
-                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t('nav_home')}
-              </NavLink>
-            </li>
-            {categories.map((cat) => (
-              <li key={cat.id}>
-                <NavLink
-                  to={`/category/${cat.slug}`}
-                  className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {cat.name}
-                </NavLink>
-              </li>
-            ))}
-            <li>
-              <NavLink 
-                to="/about" 
-                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t('nav_about')}
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
+      {/* 3. Main Premium Header */}
+      <header className={`hdr ${isScrolled ? 'hdr--scrolled' : ''}`}>
+        <div className="hdr-inner">
+          
+          {/* Left Zone: Branding & Logo */}
+          <div className="hdr-zone hdr-zone--left">
+            <Logo />
+          </div>
 
-        <div className="nav-actions">
-          <SearchBar />
-          <ThemeToggle />
-          <LanguageSwitcher />
-          <button className="action-btn menu-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Center Zone: Main Navigation (Desktop) */}
+          <div className="hdr-zone hdr-zone--center">
+            <Navigation />
+          </div>
+
+          {/* Right Zone: Widgets, Search, Actions & Profile */}
+          <div className="hdr-zone hdr-zone--right">
+            
+            {/* Weather widget (hidden on tablet/mobile) */}
+            <WeatherWidget />
+
+            {/* Accent Separator */}
+            <div className="hdr-divider hdr-divider--desktop-only" />
+
+            {/* Ctrl+K Search Trigger */}
+            <SearchBar onOpen={() => setIsSearchOpen(true)} />
+
+            <div className="hdr-divider" />
+
+            {/* Theme & Language Selectors */}
+            <ThemeSwitcher />
+            <LanguageSelector />
+
+            <div className="hdr-divider" />
+
+            {/* Notifications & Profile dropdowns */}
+            <NotificationMenu />
+            <ProfileMenu />
+
+            {/* Mobile Hamburger menu */}
+            <button
+              className="hdr-action-btn mobile-menu-toggle"
+              onClick={() => setIsMobileOpen(true)}
+              aria-label="Open navigation menu"
+              aria-expanded={isMobileOpen}
+            >
+              <Menu size={22} />
+            </button>
+          </div>
         </div>
       </header>
-    </div>
+
+      {/* 4. Global Search Modal (Ctrl+K / Overlay click to close) */}
+      <SearchDialog isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
+      {/* 5. Mobile Slide-out Drawer */}
+      <MobileNavigation isOpen={isMobileOpen} onClose={() => setIsMobileOpen(false)} />
+    </>
   );
 };

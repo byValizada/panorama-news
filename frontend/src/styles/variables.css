@@ -53,19 +53,19 @@
 }
 
 [data-theme="dark"] {
-  /* Colors - Dark Mode (byvalizada.com dark colors) */
-  --bg-color: #0a1628;
-  --bg-gradient: radial-gradient(circle at 50% 50%, #0d2137 0%, #06101e 100%);
-  --surface-color: #0d2137;
-  --surface-hover: #0f2744;
+  /* Colors - Dark Mode (byvalizada.com dark colors with high-chroma blue gradients) */
+  --bg-color: #050e18;
+  --bg-gradient: radial-gradient(circle at 50% 50%, #0d2c54 0%, #040c17 100%);
+  --surface-color: rgba(13, 33, 55, 0.7);
+  --surface-hover: rgba(22, 46, 77, 0.85);
   --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
   --accent-primary: #2196f3; /* byvalizada.com accent color */
   --accent-secondary: #1a56a0; /* byvalizada.com secondary color */
   --accent-hover: #4dabf7;
-  --border-color: #1e3a5f;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.4);
+  --border-color: rgba(30, 58, 95, 0.6);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
