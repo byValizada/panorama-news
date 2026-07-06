@@ -3,11 +3,14 @@ import { useState, useEffect } from 'react';
 export const useTheme = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const savedTheme = localStorage.getItem('panorama_theme');
-    if (savedTheme === 'light' || savedTheme === 'dark') {
-      return savedTheme;
+    if (savedTheme === 'light') {
+      localStorage.setItem('panorama_theme', 'dark');
+      return 'dark';
     }
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return systemPrefersDark ? 'dark' : 'light';
+    if (savedTheme === 'dark') {
+      return 'dark';
+    }
+    return 'dark'; // Always default to dark mode for the premium deep blue theme
   });
 
   useEffect(() => {
