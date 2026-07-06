@@ -84,7 +84,7 @@ export const Header: React.FC = () => {
 
             {/* Mobile Hamburger menu */}
             <button
-              className="hdr-action-btn mobile-menu-toggle"
+              className="mobile-nav-toggle"
               onClick={() => setIsMobileOpen(true)}
               aria-label="Open navigation menu"
               aria-expanded={isMobileOpen}

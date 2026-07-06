@@ -259,6 +259,37 @@
   gap: var(--spacing-lg);
 }
 
+/* Layout zones */
+.hdr-zone {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.hdr-zone--left {
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+
+.hdr-zone--center {
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.hdr-zone--right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  gap: var(--spacing-sm);
+}
+
+@media (max-width: 1024px) {
+  .hdr-divider--desktop-only {
+    display: none;
+  }
+}
+
 
 /* ==========================================================================
    4. LOGO (.hdr-logo)
