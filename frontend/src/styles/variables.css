@@ -1,18 +1,18 @@
 :root {
-  /* Colors - Light Mode */
-  --bg-color: #fafafa;
+  /* Colors - Light Mode (Clean Ice Blue & Royal Blue) */
+  --bg-color: #f4f7fa;
   --surface-color: #ffffff;
-  --surface-hover: #f5f5f7;
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a68;
-  --text-muted: #8e8eab;
-  --accent-primary: #e63946;
-  --accent-secondary: #457b9d;
-  --accent-hover: #c92a3a;
-  --border-color: #e8e8ed;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --surface-hover: #eef2f6;
+  --text-primary: #0a192f;
+  --text-secondary: #203a5c;
+  --text-muted: #5e728e;
+  --accent-primary: #1d90f5; /* EduAi Electric Blue */
+  --accent-secondary: #0a2540; /* EduAi Deep Navy */
+  --accent-hover: #0b7dda;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 2px 4px rgba(10, 37, 64, 0.04);
+  --shadow-md: 0 4px 12px rgba(10, 37, 64, 0.06);
+  --shadow-lg: 0 8px 24px rgba(10, 37, 64, 0.08);
 
   /* Fonts */
   --font-logo: "Playfair Display", Georgia, serif;
@@ -43,26 +43,26 @@
   --transition-slow: 0.5s ease;
 
   /* Category colors default fallback */
-  --cat-politics: #e63946;
-  --cat-economy: #2a9d8f;
-  --cat-world: #1d3557;
-  --cat-sports: #e76f51;
-  --cat-tech: #457b9d;
-  --cat-culture: #9b59b6;
+  --cat-politics: #1d90f5;
+  --cat-economy: #10b981;
+  --cat-world: #0f172a;
+  --cat-sports: #f59e0b;
+  --cat-tech: #6366f1;
+  --cat-culture: #ec4899;
 }
 
 [data-theme="dark"] {
-  /* Colors - Dark Mode */
-  --bg-color: #0f0f1a;
-  --surface-color: #1a1a2e;
-  --surface-hover: #22223b;
-  --text-primary: #e8e8ed;
-  --text-secondary: #9898b0;
-  --text-muted: #6e6e8a;
-  --accent-primary: #ff6b6b;
-  --accent-secondary: #64b5f6;
-  --accent-hover: #ff8787;
-  --border-color: #2a2a3e;
+  /* Colors - Dark Mode (EduAi Deep Navy Gradient & Electric Blue) */
+  --bg-color: #0b1a30;
+  --surface-color: #112240;
+  --surface-hover: #1a305b;
+  --text-primary: #f0f4f9;
+  --text-secondary: #a2b4cd;
+  --text-muted: #627b9f;
+  --accent-primary: #1d90f5; /* EduAi Electric Blue */
+  --accent-secondary: #00b4d8;
+  --accent-hover: #4fafff;
+  --border-color: #1e3657;
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
